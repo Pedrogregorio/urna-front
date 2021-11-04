@@ -1,28 +1,44 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="nav">
+      <router-link
+        to="/"
+        class="nav-item"
+      >
+        Inicio
+      </router-link>
+      <router-link
+        to="/about"
+        class="nav-item"
+      >
+        Cadastra Usuario/Candidato
+      </router-link>
     </div>
     <router-view/>
   </div>
 </template>
 
 <style lang="scss">
-#app {
+* {
+  padding: 0;
+  margin: 0;
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-
-  a {
+.nav {
+  height: 100px;
+  background: #00000085;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 20px;
+  box-shadow: 0px 1px 8px black;
+  .nav-item {
+    text-decoration: auto;
     font-weight: bold;
-    color: #2c3e50;
+    color: #fff;
 
     &.router-link-exact-active {
       color: #42b983;
