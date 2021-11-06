@@ -3,13 +3,13 @@
     <div class="content-screan">
       <div class="content-code">
         <div class="code">
-          <div class="category"> GOVERNADOR ESTADUAL </div>
+          <div class="category"> {{ getCategory.name }} </div>
           <div class="digits-code">
-            <div class="digit"></div>
-            <div class="digit"></div>
-            <div class="digit"></div>
-            <div class="digit"></div>
-            <div class="digit"></div>
+            <div class="digit">{{ getCode[0] }}</div>
+            <div class="digit">{{ getCode[1] }}</div>
+            <div class="digit">{{ getCode[2] }}</div>
+            <div class="digit">{{ getCode[3] }}</div>
+            <div class="digit">{{ getCode[4] }}</div>
           </div>
         </div>
       </div>
@@ -26,8 +26,16 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  name: 'Screan'
+  name: 'Screan',
+  computed: {
+    ...mapGetters([
+      'getCode',
+      'getCategory',
+    ])
+  },
 }
 </script>
 <style lang="scss">
@@ -63,6 +71,10 @@ export default {
             width: 60px;
             height: 60px;
             margin-right: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            align-items: center;
           }
         }
       }

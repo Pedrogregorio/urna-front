@@ -14,35 +14,79 @@
           :key="index"
           class="content-number"
         >
-          <div :class="n.class"> {{ n.number }} </div>
+          <button
+            v-show="n.show"
+            :class="n.class"
+            @click="addNumber(n.number)"
+          >
+            {{ n.number }}
+          </button>
+        </div>
+
+        <div class="content-number">
+          <button class="white">
+            BRANCO
+          </button>
+        </div>
+
+        <div class="content-number">
+          <button
+            class="fix"
+            @click="fix()"
+          >
+            CORRIGE
+          </button>
+        </div>
+
+        <div class="content-number">
+          <button class="confirm">
+            CONFIRMA
+          </button>
         </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'Keyboard',
   data() {
     return {
+      code: [],
       numbers: [
-        { number: '0', class: 'number' },
-        { number: '1', class: 'number' },
-        { number: '2', class: 'number' },
-        { number: '3', class: 'number' },
-        { number: '4', class: 'number' },
-        { number: '5', class: 'number' },
-        { number: '6', class: 'number' },
-        { number: '7', class: 'number' },
-        { number: '8', class: 'number' },
-        { number: '', class: 'disable' },
-        { number: '9', class: 'number' },
-        { number: '', class: 'disable' },
-        { number: 'BRANCO', class: 'white' },
-        { number: 'CORRIGE', class: 'fix' },
-        { number: 'CONFIRMA', class: 'confirm' },
+        { number: '0', class: 'number', show: true },
+        { number: '1', class: 'number', show: true },
+        { number: '2', class: 'number', show: true },
+        { number: '3', class: 'number', show: true },
+        { number: '4', class: 'number', show: true },
+        { number: '5', class: 'number', show: true },
+        { number: '6', class: 'number', show: true },
+        { number: '7', class: 'number', show: true },
+        { number: '8', class: 'number', show: true },
+        { number: '', class: '', show: false },
+        { number: '9', class: 'number', show: true },
+        { number: '', class: '', show: false },
       ]
     };
+  },
+  computed: {
+    ...mapGetters([
+      'getCode'
+    ])
+  },
+  methods: {
+    ...mapActions([
+      'setCode',
+      'removeCode',
+    ]),
+    addNumber(number) {
+      this.setCode(number);
+    },
+    fix() {
+      this.removeCode();
+    },
   },
 }
 </script>
@@ -86,21 +130,13 @@ export default {
         justify-content: center;
         .number {
           width: 100px;
-          height: 60px;
-          grid-column: 1;
-          grid-row: 1;
+          height: 58px;
           background: #080806;
           font-size: 30px;
           color: white;
           display: flex;
           justify-content: center;
           align-items: center;
-        }
-        .disable {
-          width: 100px;
-          height: 60px;
-          grid-column: 1;
-          grid-row: 1;
         }
         .white {
           background: white;
