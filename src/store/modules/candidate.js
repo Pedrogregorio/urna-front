@@ -1,9 +1,11 @@
+import API from '@/api/index';
+
 const state = {
   candidate: {},
   code: [],
   category: {
-    name: 'GOVERNADOR ESTADUAL',
-    codeLength: 5,
+    name: '',
+    codeLength: null,
   }
 }
 
@@ -25,49 +27,50 @@ const actions = {
   removeCode({ commit }) {
     commit('mutationRemoveCode');
   },
+
+  async searchCode({ commit, dispatch }, payload) {
+    const { data } = await API.getCandidate(payload)
+    if (data.errors) dispatch('setErrors', data.errors)
+    commit('mutationSetCandidate', data.candidates)
+  }
 }
 
 const mutations = {
   mutationSetCode($state, payload) {
     const stateCopy = $state;
-    console.log(stateCopy.code);
-    if(stateCopy.code.length < stateCopy.category.codeLength) stateCopy.code.push(payload)
+    if(stateCopy.code.length < stateCopy.category.codeLength) {
+      stateCopy.code.push(payload)
+    }
   },
   mutationSetCategory($state, payload) {
     const stateCopy = $state;
-    switch (payload) {
-      case payload === 'state_governor':
-        stateCopy.category = {
-          name: 'Governador Estadual',
-          codeLength: 5
-        }
-        break;
-
-      case payload === 'mayor':
-        stateCopy.category = {
-          name: 'Prefeito',
-          codeLength: 2
-        }
-        break;
-
-      case payload === 'president':
-        stateCopy.category = {
-          name: 'President',
-          codeLength: 5
-        }
-        break;
-
-      default:
-        stateCopy.category = {
-          name: '',
-          codeLength: null
-        }
-        break;
+    if (payload === 'state_governor') {
+      stateCopy.category = {
+        name: 'GOVERNADOR ESTADUAL',
+        codeLength: 5
+      }
+    }
+    if (payload === 'mayor') {
+      stateCopy.category = {
+        name: 'PREFEITO',
+        codeLength: 2
+      }
+    }
+    if (payload === 'president') {
+      stateCopy.category = {
+        name: 'PRESIDENT',
+        codeLength: 2
+      }
     }
   },
   mutationRemoveCode($state) {
     const stateCopy = $state;
     stateCopy.code = []
+    stateCopy.candidate = {}
+  },
+  mutationSetCandidate($state, payload) {
+    const stateCopy = $state
+    stateCopy.candidate = payload
   }
 }
 

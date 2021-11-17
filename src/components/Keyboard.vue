@@ -107,7 +107,6 @@ export default {
       display: flex;
       align-items: center;
       background: #e6e7e9;
-      border-top-right-radius: 20px;
       .logo-JF {
         width: 50px;
         height: 50px;
@@ -118,7 +117,6 @@ export default {
       width: 100%;
       height: 100%;
       background: #6c6d70;
-      border-bottom-right-radius: 20px;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
@@ -145,6 +143,7 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
+          font-weight: bold;
         }
         .fix {
           background: #d77133;
@@ -153,6 +152,7 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
+          font-weight: bold;
         }
         .confirm {
           background: #77be92;
@@ -161,6 +161,7 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
+          font-weight: bold;
         }
       }
     }

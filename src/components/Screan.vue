@@ -5,21 +5,30 @@
         <div class="code">
           <div class="category"> {{ getCategory.name }} </div>
           <div class="digits-code">
-            <div class="digit">{{ getCode[0] }}</div>
-            <div class="digit">{{ getCode[1] }}</div>
-            <div class="digit">{{ getCode[2] }}</div>
-            <div class="digit">{{ getCode[3] }}</div>
-            <div class="digit">{{ getCode[4] }}</div>
+
+            <div
+              v-for="(category, index) in getCategory.codeLength"
+              :key="index"
+              class="digit"
+            >
+              {{ getCode[index] }}
+            </div>
+          </div>
+          <div
+            v-if="showCandidate"
+            class="info-candidate"
+          >
+            <div>Nome: {{ getCandidate.name }}</div>
+            <div>Partido: {{ getCandidate.name }} </div>
           </div>
         </div>
       </div>
-      <div class="content-candidate">
+      <div
+        v-if="showCandidate"
+        class="content-candidate"
+      >
         <div class="candidate-img">
-          <img class="image-candidate" src="https://avatars.dicebear.com/api/open-peeps/your-custom-seed.svg">
-        </div>
-        <div class="info-candidate">
-          <div>Nome: João</div>
-          <div>Partido: PSD</div>
+          <img class="image-candidate" :src="getCandidate.photo">
         </div>
       </div>
     </div>
@@ -30,11 +39,23 @@ import { mapGetters } from 'vuex'
 
 export default {
   name: 'Screan',
+  // data() {
+  //   return {
+  //     showCandidate: false,
+  //   };
+  // },
+  mounted() {
+    console.log(this.getCategory)
+  },
   computed: {
     ...mapGetters([
       'getCode',
       'getCategory',
-    ])
+      'getCandidate',
+    ]),
+    showCandidate() {
+      return !!this.getCandidate?.name
+    }
   },
 }
 </script>
@@ -42,13 +63,13 @@ export default {
 .screan {
   width: 100%;
   .content-screan {
-    background: #bbc3c4;
-    border-radius: 10px 0px 0px 10px;
+    background: #fff;
     margin: 30px auto;
     max-width: 800px;
     height: 520px;
     display: flex;
     align-items: center;
+    box-shadow: inset 0px 0px 5px black;
     .content-code {
       width: 100%;
       .code {
@@ -70,7 +91,7 @@ export default {
             border: 2px solid black;
             width: 60px;
             height: 60px;
-            margin-right: 20px;
+            margin-right: 1px;
             font-weight: bold;
             display: flex;
             justify-content: center;

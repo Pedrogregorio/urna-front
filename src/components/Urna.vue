@@ -29,6 +29,8 @@ export default {
     grid-template-rows: auto;
     align-items: center;
     justify-items: center;
+    border-radius: 20px;
+    box-shadow: 1px 1px 3px black;
   }
 }
 </style>
