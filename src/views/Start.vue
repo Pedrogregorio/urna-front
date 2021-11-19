@@ -1,16 +1,21 @@
 <template>
   <div class="start">
-    <div class="content-category">
-      <label for=""> Selecione uma Categoria </label>
-      <select
-        v-model="category"
-        name="kind"
-      >
-        <option value="president">President</option>
-        <option value="state_governor">Governador Stadual</option>
-        <option value="mayor">Prefeito</option>
-      </select>
-      <button @click="goToVote()"> Votar </button>
+    <div class="teste">
+      <div class="content-category">
+        <div>
+          Selecione uma Categoria
+        </div>
+        <select
+          v-model="category"
+          class="category"
+          name="kind"
+        >
+          <option value="president">President</option>
+          <option value="state_governor">Governador Stadual</option>
+          <option value="mayor">Prefeito</option>
+        </select>
+        <button class="button-next" @click="goToVote()"> Votar </button>
+      </div>
     </div>
   </div>
 </template>
@@ -40,13 +45,47 @@ export default {
 .start {
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
-  .content-category {
-    display: flex;
-    height: 100px;
-    flex-direction: column;
-    justify-content: space-around;
+  justify-content: center;
+  .teste {
+    width: 100%;
+    text-align: center;
+    .content-category {
+      font-size: 1em;
+      display: flex;
+      margin: auto;
+      padding: 30px;
+      border: #c3c3c3 solid 1px;
+      border-radius: 10px;
+      max-width: 500px;
+      flex-direction: column;
+      justify-content: space-around;
+      box-shadow: 1px 1px 4px 0px #bfbbbb;
+      background: #fff;
+      .button-next {
+        color: blue;
+        font-size: 1em;
+        font-weight: bold;
+        margin-top: 20px;
+        background: transparent;
+        border: 2px solid blue;
+        border-radius: 10px;
+        height: 50px;
+        transition: 0.5s;
+      }
+      .button-next:hover {
+        font-weight: bold;
+        color: white;
+        background: blue;
+      }
+      .category {
+        text-align: center;
+        margin-top: 20px;
+        height: 50px;
+        border-radius: 10px;
+        font-size: 1em;
+      }
+    }
   }
 }
 </style>

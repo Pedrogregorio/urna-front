@@ -18,7 +18,7 @@ export default {
 .urna {
   background: #dad7ca;
   border-radius: 20px;
-  margin: 30px auto;
+  margin: 0px auto;
   max-width: 1338px;
   height: 600px;
   .content {

@@ -33,3 +33,8 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+.home {
+  padding: 100px 0px;
+}
+</style>
